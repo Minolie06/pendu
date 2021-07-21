@@ -10,7 +10,7 @@ body {
 }
 
 #box_guess_word, #box_results {
-	display: block;
+	display: none;
 }
 
 .word {

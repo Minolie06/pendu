@@ -7,10 +7,6 @@ var inputWord = document.getElementById("input_word");
 var btnSubmitWord = document.getElementById("submit_word");
 
 var btnLetters = document.getElementsByClassName("btn_letter");
-/*
-var inputLetter = document.getElementById("input_letter");
-var btnSubmitLetter = document.getElementById("submit_letter");
-*/
 
 var displayWord = document.getElementById("word_display");
 var displayAttempts = document.getElementById("attempts_left")
@@ -50,11 +46,28 @@ function showBox (box) {
 }
 
 //Initialisation
+function tidyString(word) {
+	var newWord= word.toLowerCase();
+    newWord = newWord.replace(new RegExp(/[àáâãäå]/g),"a");
+    newWord = newWord.replace(new RegExp(/æ/g),"ae");
+    newWord = newWord.replace(new RegExp(/ç/g),"c");
+    newWord = newWord.replace(new RegExp(/[èéêë]/g),"e");
+    newWord = newWord.replace(new RegExp(/[ìíîï]/g),"i");
+    newWord = newWord.replace(new RegExp(/[òóôõö]/g),"o");
+    newWord = newWord.replace(new RegExp(/œ/g),"oe");
+    newWord = newWord.replace(new RegExp(/[ùúûü]/g),"u");
+    return newWord;
+}
+
 function submitWord() {
-	wordToGuess = inputWord.value;
+	wordToGuess = tidyString(inputWord.value);
 	inputWord.value = "";
-	showBox("GAME");
-	gameInit();
+	if (/^[a-z]+$/.test(wordToGuess)) {
+		showBox("GAME");
+		gameInit();
+	} else {
+		alert("Mot invalide");
+	}
 }
 
 function gameInit() {
@@ -68,11 +81,8 @@ function gameInit() {
 
 //Game
 function guessLetter(letter) {
-	//letter = inputLetter.value;
-	//inputLetter.value = "";
-	console.log("lettre entrée : "+letter);
 	wordTemp = "";
-	
+
 	for (var i = 0; i < wordToGuess.length; i++) {
 		if (wordGuessed.substring(i, i+1) == "_" && letter == wordToGuess.substring(i, i+1)) {
 			wordTemp += letter;
@@ -110,7 +120,8 @@ function replay () {
 //Events listeners
 btnSubmitWord.addEventListener("click", submitWord, false);
 btnReplay.addEventListener("click", replay, false);
-//btnSubmitLetter.addEventListener("click", guessLetter, false);
+
+//Events listeners : keyboard
 
 btnLetters[0].addEventListener("click", function(){
 	guessLetter(btnLetters[0].value);
@@ -190,11 +201,3 @@ btnLetters[24].addEventListener("click", function(){
 btnLetters[25].addEventListener("click", function(){
 	guessLetter(btnLetters[25].value);
 })
-
-
-
-
-
-
-
-
