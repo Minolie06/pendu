@@ -10,7 +10,7 @@ body {
 }
 
 #box_guess_word, #box_results {
-	display: none;
+	display: block;
 }
 
 .word {
@@ -19,5 +19,18 @@ body {
 	margin: 20px 0;
 	font-size: 1.8em;
 	letter-spacing: 0.5em;
+}
+
+#keyboard {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.btn_letter {
+	text-transform: uppercase;
+	width: 2.5em;
+	height: 2.5em;
+	padding: 5px;
+	margin: 5px;
 }
 
