@@ -1,0 +1,23 @@
+body {
+	text-align: center;
+}
+
+.box {
+	width: 60%;
+	margin: 20px auto;
+	border: 1px solid darkgrey;
+	padding: 20px;
+}
+
+#box_guess_word, #box_results {
+	display: none;
+}
+
+.word {
+	text-transform: uppercase;
+	display: block;
+	margin: 20px 0;
+	font-size: 1.8em;
+	letter-spacing: 0.5em;
+}
+

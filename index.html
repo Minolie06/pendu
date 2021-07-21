@@ -6,6 +6,27 @@
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
+		<h1>Jeu du pendu</h1>
+		<div id="box_input_word" class="box">
+				<span>Entrez le mot à deviner :</span>
+				<input type="text" id="input_word" />
+				<button type="button" id="submit_word">Validez</button>
+		</div>
+		<div id="box_guess_word" class="box">
+			<p>
+				Il vous reste <span id="attempts_left">X</span> essais !
+				<span id="word_display" class="word"></span>
+			</p>
+			<input type="text" id="input_letter" />
+			<button type="button" id="submit_letter">Testez la lettre</button>
+		</div>
+		<div id="box_results" class="box">
+			<p>
+				<span id="result_message">Blabla</span>
+				<span id="result_word" class="word">mot</span>
+			</p>
+			<button type="button" id="replay">Rejouer</button>
+		</div>
 	</body>
 	<script src="script.js"></script>
 </html>
