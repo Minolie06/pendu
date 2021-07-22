@@ -57,6 +57,16 @@ function colorWord(word) {
 	return coloredWord;
 }
 
+function shake(elmt) {
+	var times = 10;
+	var duration = 200;
+	for (var i = 0; i < times; i++)
+		$('div#shake-it').animate({
+        left: (i % 2 === 0 ? "-" : "+") + "=50"
+    }, duration);
+}
+
+
 //Initialisation
 function tidyString(word) {
 	var newWord= word.toLowerCase();
@@ -114,6 +124,7 @@ function guessLetter(letter) {
 	} else {
 		attemptsLeft -= 1;
 		displayAttempts.innerHTML = attemptsLeft;
+		displayWord.classList.add("apply-shake");
 	}
 	
 	//game finished
@@ -146,4 +157,9 @@ for (var i=0; i<btnLetters.length; i++) {
 		ev.target.disabled = true;
 	},false);
 }
+
+//Shaking animation - remove class
+displayWord.addEventListener("animationend", (e) => {
+    displayWord.classList.remove("apply-shake");
+});
 
