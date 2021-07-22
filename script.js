@@ -6,8 +6,7 @@ var boxResults = document.getElementById("box_results");
 var inputWord = document.getElementById("input_word");
 var btnSubmitWord = document.getElementById("submit_word");
 
-var inputLetter = document.getElementById("input_letter");
-var btnSubmitLetter = document.getElementById("submit_letter");
+var btnLetters = document.getElementsByClassName("btn_letter");
 
 var displayWord = document.getElementById("word_display");
 var displayAttempts = document.getElementById("attempts_left")
@@ -47,17 +46,32 @@ function showBox (box) {
 }
 
 //Initialisation
+function tidyString(word) {
+	var newWord= word.toLowerCase();
+    newWord = newWord.replace(new RegExp(/[àáâãäå]/g),"a");
+    newWord = newWord.replace(new RegExp(/æ/g),"ae");
+    newWord = newWord.replace(new RegExp(/ç/g),"c");
+    newWord = newWord.replace(new RegExp(/[èéêë]/g),"e");
+    newWord = newWord.replace(new RegExp(/[ìíîï]/g),"i");
+    newWord = newWord.replace(new RegExp(/[òóôõö]/g),"o");
+    newWord = newWord.replace(new RegExp(/œ/g),"oe");
+    newWord = newWord.replace(new RegExp(/[ùúûü]/g),"u");
+    return newWord;
+}
+
 function submitWord() {
-	wordToGuess = inputWord.value;
+	wordToGuess = tidyString(inputWord.value);
 	inputWord.value = "";
-		console.log("mot à deviner : " + wordToGuess);
-	showBox("GAME");
-	gameInit();
+	if (/^[a-z]+$/.test(wordToGuess)) {
+		showBox("GAME");
+		gameInit();
+	} else {
+		alert("Mot invalide");
+	}
 }
 
 function gameInit() {
 	attemptsMax = wordToGuess.length;
-		console.log("Nombre d'essais max: " + attemptsMax);
 	wordGuessed = "";
 	for (i in wordToGuess) {wordGuessed += "_";}
 	displayWord.innerHTML = wordGuessed;
@@ -66,12 +80,9 @@ function gameInit() {
 }
 
 //Game
-function guessLetter() {
-	letter = inputLetter.value;
-	inputLetter.value = "";
-		console.log("lettre entrée : "+letter);
+function guessLetter(letter) {
 	wordTemp = "";
-	
+
 	for (var i = 0; i < wordToGuess.length; i++) {
 		if (wordGuessed.substring(i, i+1) == "_" && letter == wordToGuess.substring(i, i+1)) {
 			wordTemp += letter;
@@ -108,6 +119,85 @@ function replay () {
 
 //Events listeners
 btnSubmitWord.addEventListener("click", submitWord, false);
-btnSubmitLetter.addEventListener("click", guessLetter, false);
 btnReplay.addEventListener("click", replay, false);
 
+//Events listeners : keyboard
+
+btnLetters[0].addEventListener("click", function(){
+	guessLetter(btnLetters[0].value);
+})
+btnLetters[1].addEventListener("click", function(){
+	guessLetter(btnLetters[1].value);
+})
+btnLetters[2].addEventListener("click", function(){
+	guessLetter(btnLetters[2].value);
+})
+btnLetters[3].addEventListener("click", function(){
+	guessLetter(btnLetters[3].value);
+})
+btnLetters[4].addEventListener("click", function(){
+	guessLetter(btnLetters[4].value);
+})
+btnLetters[5].addEventListener("click", function(){
+	guessLetter(btnLetters[5].value);
+})
+btnLetters[6].addEventListener("click", function(){
+	guessLetter(btnLetters[6].value);
+})
+btnLetters[7].addEventListener("click", function(){
+	guessLetter(btnLetters[7].value);
+})
+btnLetters[8].addEventListener("click", function(){
+	guessLetter(btnLetters[8].value);
+})
+btnLetters[9].addEventListener("click", function(){
+	guessLetter(btnLetters[9].value);
+})
+btnLetters[10].addEventListener("click", function(){
+	guessLetter(btnLetters[10].value);
+})
+btnLetters[11].addEventListener("click", function(){
+	guessLetter(btnLetters[11].value);
+})
+btnLetters[12].addEventListener("click", function(){
+	guessLetter(btnLetters[12].value);
+})
+btnLetters[13].addEventListener("click", function(){
+	guessLetter(btnLetters[13].value);
+})
+btnLetters[14].addEventListener("click", function(){
+	guessLetter(btnLetters[14].value);
+})
+btnLetters[15].addEventListener("click", function(){
+	guessLetter(btnLetters[15].value);
+})
+btnLetters[16].addEventListener("click", function(){
+	guessLetter(btnLetters[16].value);
+})
+btnLetters[17].addEventListener("click", function(){
+	guessLetter(btnLetters[17].value);
+})
+btnLetters[18].addEventListener("click", function(){
+	guessLetter(btnLetters[18].value);
+})
+btnLetters[19].addEventListener("click", function(){
+	guessLetter(btnLetters[19].value);
+})
+btnLetters[20].addEventListener("click", function(){
+	guessLetter(btnLetters[20].value);
+})
+btnLetters[21].addEventListener("click", function(){
+	guessLetter(btnLetters[21].value);
+})
+btnLetters[22].addEventListener("click", function(){
+	guessLetter(btnLetters[22].value);
+})
+btnLetters[23].addEventListener("click", function(){
+	guessLetter(btnLetters[23].value);
+})
+btnLetters[24].addEventListener("click", function(){
+	guessLetter(btnLetters[24].value);
+})
+btnLetters[25].addEventListener("click", function(){
+	guessLetter(btnLetters[25].value);
+})
