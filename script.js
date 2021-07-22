@@ -49,7 +49,7 @@ function colorWord(word) {
 	var coloredWord = "";
 	for (var i=0; i<word.length; i++) {
 		if (word.substring(i, i+1) == "_") {
-			coloredWord += '<span class="red">' + wordToGuess.substring(i, i+1) + '</span>';
+			coloredWord += '<span class="accent_color">' + wordToGuess.substring(i, i+1) + '</span>';
 		} else {
 			coloredWord += word.substring(i, i+1);
 		}
