@@ -1,11 +1,42 @@
-body {
-	text-align: center;
+:root {
+  --color-bg: #14213d;
+  --color-accent: #fca311;
+  --color-text: #ffffff;
+  --color-faded: grey;
 }
 
+body {
+	text-align: center;
+	font-family: 'Nunito', sans-serif;
+	font-size: 20px;
+	background-color: var(--color-bg);
+	color: var(--color-text);
+}
+
+h1 {
+	font-size: 2.5em;
+	color: var(--color-accent);
+}
+
+button {
+	color: var(--color-accent);
+	background-color: var(--color-bg);
+	font-size: 1em;
+	padding: 0.8em;
+	border: 2px solid var(--color-accent);
+	border-radius: 5px;
+}
+
+button:hover {
+	background-color: var(--color-accent);
+	color: var(--color-bg);
+}
+
+/* BOXES */
 .box {
 	width: 60%;
+	height: 60vh;
 	margin: 20px auto;
-	border: 1px solid darkgrey;
 	padding: 20px;
 }
 
@@ -13,24 +44,87 @@ body {
 	display: none;
 }
 
+/* INPUT BOX*/
+input {
+	display: block;
+	margin: 40px auto;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	caret-color: var(--color-accent);
+	text-decoration: none;
+	border: none;
+	border-bottom: 2px solid var(--color-text);
+	text-align: center;
+	font-size: 2em;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+}
+
+input:focus {
+	outline: none;
+	border-color: var(--color-accent);
+}
+
+/* WORD DISPLAY*/
+#attempts_left {
+	font-size: 1.5em;
+	color: var(--color-accent);
+	margin: 0.3em;
+}
+
 .word {
 	text-transform: uppercase;
 	display: block;
-	margin: 20px 0;
-	font-size: 1.8em;
+	margin: 40px 0;
+	font-size: 2em;
 	letter-spacing: 0.5em;
 }
 
+.accent_color {
+	color: var(--color-accent);
+}
+
+/* VIRTUAL KEYBOARD */
 #keyboard {
 	width: 80%;
 	margin: 0 auto;
 }
 
-.btn_letter {
+#keyboard .btn_letter {
 	text-transform: uppercase;
 	width: 2.5em;
 	height: 2.5em;
 	padding: 5px;
 	margin: 5px;
+	font-size: 1em;
 }
 
+.btn_letter[disabled] {
+	color: var(--color-faded);
+	border-color: var(--color-faded);
+	background-color: var(--color-bg);
+}
+
+/*SHAKING ANIMATION*/
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.apply-shake {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
