@@ -1,5 +1,6 @@
 body {
 	text-align: center;
+	font-family: 'Nunito', sans-serif;
 }
 
 .box {
@@ -19,6 +20,10 @@ body {
 	margin: 20px 0;
 	font-size: 1.8em;
 	letter-spacing: 0.5em;
+}
+
+.red {
+	color: red;
 }
 
 #keyboard {
