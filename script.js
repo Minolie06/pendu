@@ -26,7 +26,7 @@ var attemptsMax;
 var attemptsLeft;
 
 //Display
-function showBox (box) {
+function showBox(box) {
 	switch (box) {
 		case "INPUT":
 			boxInputWord.style.display = "block";
@@ -133,7 +133,7 @@ function guessLetter(letter) {
 }
 
 //Replay
-function replay () {
+function replay() {
 	showBox("INPUT");
 	displayWord.classList.remove("apply-shake");
 }
@@ -144,14 +144,14 @@ btnSubmitWord.addEventListener("click", submitWord, false);
 btnReplay.addEventListener("click", replay, false);
 
 for (var i=0; i<btnLetters.length; i++) {
-	btnLetters[i].addEventListener("click", function(ev) {
-		guessLetter(ev.target.value);
-		ev.target.disabled = true;
+	btnLetters[i].addEventListener("click", function(e) {
+		guessLetter(e.target.value);
+		e.target.disabled = true;
 	},false);
 }
 
-inputWord.addEventListener("keyup", function(event) {
-	if(event.keyCode === 13) {
+inputWord.addEventListener("keyup", function(e) {
+	if(e.keyCode === 13) {
 		btnSubmitWord.click();
 	}
 }, false);
@@ -161,6 +161,6 @@ inputWord.addEventListener("focus", function() {
 }, false);
 
 //Shaking animation - remove class
-displayWord.addEventListener("animationend", (e) => {
+displayWord.addEventListener("animationend", function(e) {
     displayWord.classList.remove("apply-shake");
-});
+}, false);
