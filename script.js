@@ -57,16 +57,6 @@ function colorWord(word) {
 	return coloredWord;
 }
 
-function shake(elmt) {
-	var times = 10;
-	var duration = 200;
-	for (var i = 0; i < times; i++)
-		$('div#shake-it').animate({
-        left: (i % 2 === 0 ? "-" : "+") + "=50"
-    }, duration);
-}
-
-
 //Initialisation
 function tidyString(word) {
 	var newWord= word.toLowerCase();
@@ -144,6 +134,7 @@ function guessLetter(letter) {
 //Replay
 function replay () {
 	showBox("INPUT");
+	displayWord.classList.remove("apply-shake");
 }
 
 
@@ -158,8 +149,13 @@ for (var i=0; i<btnLetters.length; i++) {
 	},false);
 }
 
+inputWord.addEventListener("keyup", function(event) {
+	if(event.keyCode === 13) {
+		btnSubmitWord.click();
+	}
+}, false);
+
 //Shaking animation - remove class
 displayWord.addEventListener("animationend", (e) => {
     displayWord.classList.remove("apply-shake");
 });
-
