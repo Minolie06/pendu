@@ -5,6 +5,7 @@ var boxResults = document.getElementById("box_results");
 
 var inputWord = document.getElementById("input_word");
 var btnSubmitWord = document.getElementById("submit_word");
+var errorMessage = document.getElementById("error_message");
 
 var btnLetters = document.getElementsByClassName("btn_letter");
 
@@ -78,7 +79,7 @@ function submitWord() {
 		showBox("GAME");
 		gameInit();
 	} else {
-		alert("Mot invalide");
+		errorMessage.style.visibility = "visible";
 	}
 }
 
@@ -153,6 +154,10 @@ inputWord.addEventListener("keyup", function(event) {
 	if(event.keyCode === 13) {
 		btnSubmitWord.click();
 	}
+}, false);
+
+inputWord.addEventListener("focus", function() {
+	errorMessage.style.visibility = "hidden";
 }, false);
 
 //Shaking animation - remove class

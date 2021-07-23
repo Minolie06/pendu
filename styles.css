@@ -65,6 +65,13 @@ input:focus {
 	border-color: var(--color-accent);
 }
 
+#error_message {
+	color: var(--color-faded);
+	margin-top: 40px;
+	font-size: 0.9em;
+	visibility: hidden;
+}
+
 /* WORD DISPLAY*/
 #attempts_left {
 	font-size: 1.5em;
