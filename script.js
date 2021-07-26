@@ -37,16 +37,19 @@ function showBox(box) {
 			boxInputWord.style.display = "block";
 			boxGuessWord.style.display = "none";
 			boxResults.style.display = "none";
+			inputWord.focus();
 			break;
 		case "GAME":
 			boxInputWord.style.display = "none";
 			boxGuessWord.style.display = "block";
 			boxResults.style.display = "none";
+			inputLetter.focus();
 			break;
 		case "RESULTS":
 			boxInputWord.style.display = "none";
 			boxGuessWord.style.display = "none";
 			boxResults.style.display = "block";
+			btnReplay.focus();
 			break;
 	}
 }
@@ -131,7 +134,6 @@ function guessLetter(letter) {
 			resultMessage.innerHTML = "Gagné ! Le mot à deviner était bien :"
 			resultWord.innerHTML = wordToGuess;
 		}
-		
 		showBox("RESULTS");
 	}
 }
@@ -145,7 +147,10 @@ function replay() {
 
 //Events listeners
 btnSubmitWord.addEventListener("click", submitWord, false);
-btnSubmitLetter.addEventListener("click", submitLetter, false);
+btnSubmitLetter.addEventListener("click", function(){
+	submitLetter();
+	inputLetter.focus();
+}, false);
 btnReplay.addEventListener("click", replay, false);
 
 //Enter = clic button
@@ -175,3 +180,7 @@ inputLetter.addEventListener("keydown", function() {
 displayWord.addEventListener("animationend", function(e) {
     displayWord.classList.remove("apply-shake");
 }, false);
+
+//On-load
+showBox("INPUT");
+
