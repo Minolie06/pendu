@@ -32,6 +32,13 @@ button:hover {
 	color: var(--color-bg);
 }
 
+.error_message {
+	color: var(--color-faded);
+	margin-top: 40px;
+	font-size: 0.9em;
+	visibility: hidden;
+}
+
 /* BOXES */
 .box {
 	width: 60%;
@@ -65,13 +72,6 @@ input:focus {
 	border-color: var(--color-accent);
 }
 
-#error_message {
-	color: var(--color-faded);
-	margin-top: 40px;
-	font-size: 0.9em;
-	visibility: hidden;
-}
-
 /* WORD DISPLAY*/
 #attempts_left {
 	font-size: 1.5em;
@@ -91,25 +91,10 @@ input:focus {
 	color: var(--color-accent);
 }
 
-/* VIRTUAL KEYBOARD */
-#keyboard {
-	width: 80%;
-	margin: 0 auto;
-}
-
-#keyboard .btn_letter {
-	text-transform: uppercase;
-	width: 2.5em;
-	height: 2.5em;
-	padding: 5px;
-	margin: 5px;
-	font-size: 1em;
-}
-
-.btn_letter[disabled] {
-	color: var(--color-faded);
-	border-color: var(--color-faded);
-	background-color: var(--color-bg);
+/* GUESS LETTER BOX */
+#input_letter {
+	display: inline-block;
+	width: 2em;
 }
 
 /*SHAKING ANIMATION*/

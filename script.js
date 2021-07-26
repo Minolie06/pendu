@@ -5,9 +5,12 @@ var boxResults = document.getElementById("box_results");
 
 var inputWord = document.getElementById("input_word");
 var btnSubmitWord = document.getElementById("submit_word");
-var errorMessage = document.getElementById("error_message");
+var errorWord = document.getElementById("error_word");
 
-var btnLetters = document.getElementsByClassName("btn_letter");
+var inputLetter = document.getElementById("input_letter");
+var btnSubmitLetter = document.getElementById("submit_letter");
+var errorLetterRepeat = document.getElementById("error_letter_repeat");
+var errorLetterInvalid = document.getElementById("error_letter_invalid");
 
 var displayWord = document.getElementById("word_display");
 var displayAttempts = document.getElementById("attempts_left")
@@ -20,7 +23,9 @@ var btnReplay = document.getElementById("replay");
 var wordToGuess;
 var wordGuessed;
 var wordTemp;
-var letter;
+
+var letterUser;
+var lettersGuessed;
 
 var attemptsMax;
 var attemptsLeft;
@@ -59,45 +64,44 @@ function colorWord(word) {
 }
 
 //Initialisation
-function tidyString(word) {
-	var newWord= word.toLowerCase();
-    newWord = newWord.replace(new RegExp(/[àáâãäå]/g),"a");
-    newWord = newWord.replace(new RegExp(/æ/g),"ae");
-    newWord = newWord.replace(new RegExp(/ç/g),"c");
-    newWord = newWord.replace(new RegExp(/[èéêë]/g),"e");
-    newWord = newWord.replace(new RegExp(/[ìíîï]/g),"i");
-    newWord = newWord.replace(new RegExp(/[òóôõö]/g),"o");
-    newWord = newWord.replace(new RegExp(/œ/g),"oe");
-    newWord = newWord.replace(new RegExp(/[ùúûü]/g),"u");
-    return newWord;
-}
-
 function submitWord() {
-	wordToGuess = tidyString(inputWord.value);
+	wordToGuess = inputWord.value.toLowerCase();
 	inputWord.value = "";
-	if (/^[a-z]+$/.test(wordToGuess)) {
+	if (/^[a-z-àáâãäåæçèéêëìíîïòóôõöœùúûü]+$/.test(wordToGuess)) {
 		showBox("GAME");
 		gameInit();
 	} else {
-		errorMessage.style.visibility = "visible";
+		errorWord.style.visibility = "visible";
 	}
 }
 
 function gameInit() {
 	attemptsMax = wordToGuess.length;
 	wordGuessed = "";
+	lettersGuessed = [];
 	for (i in wordToGuess) {wordGuessed += "_";}
 	displayWord.innerHTML = wordGuessed;
 	attemptsLeft = attemptsMax;
 	displayAttempts.innerHTML = attemptsLeft;
-	
-	//reset keyboard
-	for (var i=0; i<btnLetters.length; i++) {
-		btnLetters[i].disabled = false;
-	}
 }
 
 //Game
+function submitLetter() {
+	letterUser = inputLetter.value;
+	inputLetter.value = "";
+	if (/^[a-z-àáâãäåæçèéêëìíîïòóôõöœùúûü]+$/.test(letterUser)) {
+		if (!(lettersGuessed.includes(letterUser))) {
+			guessLetter(letterUser);
+			lettersGuessed.push(letterUser);
+		} else {
+			errorLetterRepeat.style.visibility = "visible";
+			
+		}
+	} else {
+		errorLetterInvalid.style.visibility = "visible";
+	}
+}
+
 function guessLetter(letter) {
 	wordTemp = "";
 
@@ -141,23 +145,31 @@ function replay() {
 
 //Events listeners
 btnSubmitWord.addEventListener("click", submitWord, false);
+btnSubmitLetter.addEventListener("click", submitLetter, false);
 btnReplay.addEventListener("click", replay, false);
 
-for (var i=0; i<btnLetters.length; i++) {
-	btnLetters[i].addEventListener("click", function(e) {
-		guessLetter(e.target.value);
-		e.target.disabled = true;
-	},false);
-}
-
+//Enter = clic button
 inputWord.addEventListener("keyup", function(e) {
 	if(e.keyCode === 13) {
 		btnSubmitWord.click();
 	}
 }, false);
 
-inputWord.addEventListener("focus", function() {
-	errorMessage.style.visibility = "hidden";
+inputLetter.addEventListener("keyup", function(e) {
+	if(e.keyCode === 13) {
+		btnSubmitLetter.click();
+		btnSubmitLetter.blur();
+	}
+}, false);
+
+//Hide error messages
+inputWord.addEventListener("keydown", function() {
+	errorWord.style.visibility = "hidden";
+}, false);
+
+inputLetter.addEventListener("keydown", function() {
+	errorLetterInvalid.style.visibility = "hidden";
+	errorLetterRepeat.style.visibility = "hidden";
 }, false);
 
 //Shaking animation - remove class
