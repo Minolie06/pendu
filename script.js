@@ -158,7 +158,6 @@ inputWord.addEventListener("keyup", function(e) {
 inputLetter.addEventListener("keyup", function(e) {
 	if(e.keyCode === 13) {
 		btnSubmitLetter.click();
-		btnSubmitLetter.blur();
 	}
 }, false);
 
