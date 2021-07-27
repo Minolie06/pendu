@@ -73,13 +73,13 @@ function submitWord() {
 	if (/^[a-z-àáâãäåæçèéêëìíîïòóôõöœùúûü]+$/.test(wordToGuess)) {
 		showBox("GAME");
 		gameInit();
-	} else {
+	} else if (wordToGuess != "") {
 		errorWord.style.visibility = "visible";
 	}
 }
 
 function gameInit() {
-	attemptsMax = wordToGuess.length;
+	attemptsMax = Math.min(2*wordToGuess.length, 20);
 	wordGuessed = "";
 	lettersGuessed = [];
 	for (i in wordToGuess) {wordGuessed += "_";}
@@ -100,7 +100,7 @@ function submitLetter() {
 			errorLetterRepeat.style.visibility = "visible";
 			
 		}
-	} else {
+	} else if (letterUser != "") {
 		errorLetterInvalid.style.visibility = "visible";
 	}
 }
