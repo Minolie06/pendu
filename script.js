@@ -154,14 +154,14 @@ btnSubmitLetter.addEventListener("click", function(){
 btnReplay.addEventListener("click", replay, false);
 
 //Enter = clic button
-inputWord.addEventListener("keyup", function(e) {
-	if(e.keyCode === 13) {
+inputWord.addEventListener("keypress", function(e) {
+	if(e.key === "Enter") {
 		btnSubmitWord.click();
 	}
 }, false);
 
 inputLetter.addEventListener("keyup", function(e) {
-	if(e.keyCode === 13) {
+	if(e.key === "Enter") {
 		btnSubmitLetter.click();
 	}
 }, false);
@@ -182,5 +182,5 @@ displayWord.addEventListener("animationend", function(e) {
 }, false);
 
 //On-load
-showBox("INPUT");
+windows.onload = showBox("INPUT");
 
